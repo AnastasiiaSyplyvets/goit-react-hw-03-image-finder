@@ -1,10 +1,15 @@
 import React from 'react';
 import './styles.css';
 
-export const ImageGalleryItem = ({ id, smallImg, bigImg }) => {
+export const ImageGalleryItem = ({ id, smallImg, onClick }) => {
   return (
     <li key={id} className="ImageGalleryItem">
-      <img className="ImageGalleryItem-image" src={smallImg} alt="" />
+      <img
+        onClick={onClick}
+        className="ImageGalleryItem-image"
+        src={smallImg}
+        alt=""
+      />
     </li>
   );
 };
