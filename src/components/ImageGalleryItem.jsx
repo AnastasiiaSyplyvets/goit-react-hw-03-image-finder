@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+import { PropTypes } from 'react';
 
 export const ImageGalleryItem = ({ id, smallImg, onClick }) => {
   return (
@@ -12,4 +13,10 @@ export const ImageGalleryItem = ({ id, smallImg, onClick }) => {
       />
     </li>
   );
+};
+
+ImageGalleryItem.propTypes = {
+  id: PropTypes.number,
+  smallImg: PropTypes.string,
+  onClick: PropTypes.func,
 };
