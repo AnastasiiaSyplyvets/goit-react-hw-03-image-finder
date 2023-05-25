@@ -11,10 +11,10 @@ export class App extends Component {
   state = {
     images: [],
     loading: false,
-    // status: 'idle',
     showModal: false,
     selectedImage: null,
     searchQuiry: '',
+    showButton: false,
   };
 
   page = 1;
@@ -61,17 +61,20 @@ export class App extends Component {
           //   console.log('data <12');
           // }
 
-          // ...data.hits
-
-          // console.log(pureData);
-
           this.setState(prevState => ({
             images: [...prevState.images, ...pureData],
             loading: false,
-            // status: 'resolved',
           }));
 
-          // console.log(this.state.images);
+          const pagesCount = Math.ceil(data.totalHits / 12);
+
+          // console.log(this.page);
+
+          if (pagesCount === this.page) {
+            this.setState({ showButton: false });
+          } else {
+            this.setState({ showButton: true });
+          }
         })
         .catch(err => console.log(err))
         .finally(() => {
@@ -87,52 +90,13 @@ export class App extends Component {
   };
 
   handleRequest = value => {
-    // e.preventDefault();
     this.page = 1;
 
     this.setState({ searchQuiry: value, images: [] });
-    // console.log(value);
   };
 
   render() {
     const { loading, images, selectedImage } = this.state;
-    // console.log(images);
-
-    //   if (status === 'idle') {
-    //     return <Searchbar onSubmit={this.handleRequest} />;
-    //   }
-
-    //   if (status === 'pending') {
-    //     return (
-    //       <>
-    //         <Searchbar onSubmit={this.handleRequest} />;
-    //         <Loader />;
-    //       </>
-    //     );
-    //   }
-
-    //   if (status === 'resolved') {
-    //     return (
-    //       <>
-    //         <Searchbar onSubmit={this.handleRequest} />;
-    //         {images.length > 0 && (
-    //           <ImageGallery>
-    //             {images.map(image => {
-    //               return (
-    //                 <ImageGalleryItem
-    //                   key={image.id}
-    //                   smallImg={image.webformatURL}
-    //                 />
-    //               );
-    //             })}
-    //           </ImageGallery>
-    //         )}
-    //         {images.length > 0 && (
-    //           <LoadMoreBtn onClick={this.handleLoadMoreRequest} />
-    //         )}
-    //       </>
-    //     );
-    //   }
 
     return (
       <>
@@ -162,12 +126,9 @@ export class App extends Component {
           </ImageGallery>
         )}
 
-        {images.length > 0 && (
+        {this.state.showButton && (
           <LoadMoreBtn onClick={this.handleLoadMoreRequest} />
         )}
-        {/* {images.length <= 12 ? null : (
-          <LoadMoreBtn disabled onClick={this.handleLoadMoreRequest} />
-        )} */}
       </>
     );
   }
