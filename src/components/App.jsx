@@ -48,7 +48,12 @@ export class App extends Component {
             alert('No results found!');
             return;
           }
-
+          const pureData = data.hits.map(image => ({
+            id: image.id,
+            webformatURL: image.webformatURL,
+            largeImageURL: image.largeImageURL,
+            tags: image.tags,
+          }));
           // if (data.total <= 12) {
           //   const btn = document.querySelector('#load-more');
           //   btn.addAttribute('disabled');
@@ -56,11 +61,17 @@ export class App extends Component {
           //   console.log('data <12');
           // }
 
-          this.setState({
-            images: [...this.state.images, ...data.hits],
+          // ...data.hits
+
+          // console.log(pureData);
+
+          this.setState(prevState => ({
+            images: [...prevState.images, ...pureData],
             loading: false,
             // status: 'resolved',
-          });
+          }));
+
+          // console.log(this.state.images);
         })
         .catch(err => console.log(err))
         .finally(() => {
@@ -80,11 +91,12 @@ export class App extends Component {
     this.page = 1;
 
     this.setState({ searchQuiry: value, images: [] });
-    console.log(value);
+    // console.log(value);
   };
 
   render() {
     const { loading, images, selectedImage } = this.state;
+    // console.log(images);
 
     //   if (status === 'idle') {
     //     return <Searchbar onSubmit={this.handleRequest} />;
