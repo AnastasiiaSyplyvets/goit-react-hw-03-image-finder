@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles.css';
-import { PropTypes } from 'react';
+import PropTypes from 'prop-types';
 
 export const LoadMoreBtn = ({ onClick, disabled }) => {
   return (
@@ -16,6 +16,6 @@ export const LoadMoreBtn = ({ onClick, disabled }) => {
   );
 };
 
-// LoadMoreBtn.propTypes = {
-//   onClick: PropTypes.func,
-// };
+LoadMoreBtn.propTypes = {
+  onClick: PropTypes.func,
+};
