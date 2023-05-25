@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import './styles.css';
+import '../styles.css';
 import { createPortal } from 'react-dom';
 import { PropTypes } from 'react';
 
@@ -45,6 +45,6 @@ class Modal extends Component {
 
 export default Modal;
 
-Modal.propTypes = {
-  largeImageURL: PropTypes.string,
-};
+// Modal.propTypes = {
+//   largeImageURL: PropTypes.string,
+// };

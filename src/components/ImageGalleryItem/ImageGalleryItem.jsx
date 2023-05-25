@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import '../styles.css';
 import { PropTypes } from 'react';
 
 export const ImageGalleryItem = ({ id, smallImg, onClick }) => {
@@ -15,8 +15,8 @@ export const ImageGalleryItem = ({ id, smallImg, onClick }) => {
   );
 };
 
-ImageGalleryItem.propTypes = {
-  id: PropTypes.number,
-  smallImg: PropTypes.string,
-  onClick: PropTypes.func,
-};
+// ImageGalleryItem.propTypes = {
+//   id: PropTypes.number,
+//   smallImg: PropTypes.string,
+//   onClick: PropTypes.func,
+// };
